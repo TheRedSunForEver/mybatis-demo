@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.x.mybatisdemo.mapper.UserMapper;
 import org.x.mybatisdemo.model.Country;
+import org.x.mybatisdemo.model.SysRole;
 import org.x.mybatisdemo.model.SysUser;
 
 import java.io.IOException;
@@ -39,6 +40,27 @@ public class Application {
         } else {
             System.out.println(user.getUserName());
         }
+
+        List<SysUser> userList = userMapper.selectAll();
+        if (userList == null) {
+            System.out.println("userList is null.");
+            return;
+        }
+
+        for (SysUser u : userList) {
+            System.out.println(u.getUserName() + ", " + u.getUserPassword());
+        }
+
+        List<SysRole> roleList = userMapper.selectRoleByUserId(1L);
+        if (roleList == null) {
+            System.out.println("roleList is null.");
+            return;
+        }
+
+        for (SysRole r : roleList) {
+            System.out.println(r.getRoleName() + ", " + r.getUser().getUserName());
+        }
+
     }
 
     private static void demo1(SqlSession sqlSession) {

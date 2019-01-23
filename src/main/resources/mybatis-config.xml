@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="org.x.mybatisdemo.model" />
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用jdbc事务管理，目前由mybatis来管理 -->
+            <transactionManager type="JDBC" />
+            <!-- 数据库连接池，目前由mybatis来管理 -->
+            <dataSource type="POOLED"><!--有关于mysql数据库的各种信息-->
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/xdb" />
+                <property name="username" value="x" />
+                <property name="password" value="s123455" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--将操作配置文件User.xml系添加进mapper
+        <mapper resource="mapper/CountryMapper.xml" />
+        -->
+        <package name="org.x.mybatisdemo.mapper" />
+    </mappers>
+</configuration>
